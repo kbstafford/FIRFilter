@@ -2,7 +2,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import warnings
-import mne
 from scipy.stats import skew, kurtosis
 from scipy.signal import welch, convolve
 from sklearn.ensemble import RandomForestClassifier
@@ -160,3 +159,9 @@ plt.xlabel('Sample Number')
 plt.ylabel('Amplitude')
 plt.tight_layout()
 plt.show()
+
+# 1. Separate filter coefficient generation from calculation.
+# 2. Modify another filter (integer-based). Ground coefficients to nearest integer, digitized filter may or may not behave similar to current filter. 
+# 3. "How do we choose the result?" More or less fractional bits, rounding, etc. Creating a filter which is operating entirely on bit sequences (binary fractionals), along with what is recommended frequency. Design exploration, how many filter coefficients would we need in the first place, bitness (width).
+# 4. Main point: see trade-off between parameters. Low pass, then low pass + high pass (== band pass). Consider trying band-stop further. Can we integrate number of coefficients. 
+# Not a good idea to add 3 or more 32-bit numbers concurrently.  
